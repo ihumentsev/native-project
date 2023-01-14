@@ -18,7 +18,7 @@ import {
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import Constants from "expo-constants";
-import ImagePickerAvatar from "../components/pickImage";
+import ImagePickerAvatar from "../../components/pickImage";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -47,12 +47,11 @@ export default function RegisrationeScreen({ navigation }) {
   };
 
   const [fontsLoaded] = useFonts({
-    "Robo-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
-    "Robo-Medium": require("../assets/fonts/Roboto-Medium.ttf"),
+    "Robo-Regular": require("../../assets/fonts/Roboto-Regular.ttf"),
+    "Robo-Medium": require("../../assets/fonts/Roboto-Medium.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {
-    console.log(Platform.OS);
     if (fontsLoaded) {
       await SplashScreen.hideAsync();
     }
@@ -64,7 +63,7 @@ export default function RegisrationeScreen({ navigation }) {
 
   return (
     <ImageBackground
-      source={require("../../native-project/assets/image/photo.png")}
+      source={require("../../assets/image/photo.png")}
       style={styles.image}
     >
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -191,6 +190,7 @@ export default function RegisrationeScreen({ navigation }) {
                       color: "#1B4371",
                       fontWeight: "400",
                       fontSize: 16,
+                      fontFamily: "Robo-Regular",
                     }}
                     onPress={() => navigation.navigate("Login")}
                   >

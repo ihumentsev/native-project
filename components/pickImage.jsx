@@ -56,7 +56,8 @@ const styles = StyleSheet.create({
   avatarBox: {
     position: "absolute",
     top: -60,
-    left: Dimensions.get("window").width / 2 - 60,
+    // left: Dimensions.get("window").width / 2 - 60,
+    alignSelf: "center",
     width: 120,
     height: 120,
     backgroundColor: "#F6F6F6",

@@ -21,7 +21,6 @@ SplashScreen.preventAutoHideAsync();
 
 export default function LoginScreen({ navigation }) {
   const initialState = {
-    login: "",
     email: "",
     password: "",
   };
@@ -37,8 +36,8 @@ export default function LoginScreen({ navigation }) {
   };
 
   const [fontsLoaded] = useFonts({
-    "Robo-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
-    "Robo-Medium": require("../assets/fonts/Roboto-Medium.ttf"),
+    "Robo-Regular": require("../../assets/fonts/Roboto-Regular.ttf"),
+    "Robo-Medium": require("../../assets/fonts/Roboto-Medium.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -54,7 +53,7 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <ImageBackground
-      source={require("../../native-project/assets/image/photo.png")}
+      source={require("../../assets/image/photo.png")}
       style={styles.image}
     >
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -134,7 +133,12 @@ export default function LoginScreen({ navigation }) {
             <TouchableOpacity style={{ marginTop: 16, alignItems: "center" }}>
               <Text
                 textAlign={"center"}
-                style={{ color: "#1B4371", fontWeight: "400", fontSize: 16 }}
+                style={{
+                  color: "#1B4371",
+                  fontWeight: "400",
+                  fontSize: 16,
+                  fontFamily: "Robo-Regular",
+                }}
                 onPress={() => navigation.navigate("Register")}
               >
                 Нет аккаунта? Зарегистрироваться

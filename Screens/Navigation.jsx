@@ -1,47 +1,52 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import LoginScreen from "./LoginScreen";
-import RegisrationeScreen from "./RegistrationScreen";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { Button } from "react-native";
+import RegisrationeScreen from "./auth/RegistrationScreen";
+import LoginScreen from "./auth/LoginScreen";
+import PostScreen from "./main/PostSScreen";
+import CreateScreen from "./main/CreateScreen";
+import ProfileScreen from "./main/ProfileScreen";
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-export default function Navigation() {
+const useRout = (isAuth) => {
+  if (!isAuth) {
+    return (
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="Register" component={RegisrationeScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+      </Stack.Navigator>
+    );
+  }
   return (
-    // <NavigationContainer>
-    <Stack.Navigator
+    <Tab.Navigator
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Stack.Screen
-        name="Register"
-        component={RegisrationeScreen}
-        // options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Login"
-        component={LoginScreen}
-        // options={{
-        //   title: "Home screen",
-        //   headerStyle: {
-        //     backgroundColor: "#f4511e",
-        //   },
-        //   headerTintColor: "#fff",
-        //   headerTitleStyle: {
-        //     fontWeight: "bold",
-        //     fontSize: 20,
-        //   },
-        //   headerRight: () => (
-        //     <Button
-        //       onPress={() => alert("This is a button!")}
-        //       title="Press me"
-        //       color="#fff"
-        //     />
-        //   ),
-        // }}
-      />
-    </Stack.Navigator>
-    // </NavigationContainer>
+      <Tab.Screen name="Post" component={PostScreen} />
+      <Tab.Screen name="Create" component={CreateScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
+    </Tab.Navigator>
   );
+};
+
+export default function Navigation() {
+  const routing = useRout(null);
+  return <>{routing}</>;
 }
+
+// <Stack.Navigator
+//   screenOptions={{
+//     headerShown: false,
+//   }}
+// >
+//   <Stack.Screen name="Register" component={RegisrationeScreen} />
+//   <Stack.Screen name="Login" component={LoginScreen} />
+// </Stack.Navigator>

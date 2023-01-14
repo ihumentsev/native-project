@@ -28,7 +28,8 @@
     "react-native-safe-area-context": "^4.4.1",
     "react-native-screens": "^3.18.2",
     "webpack": "^5.75.0",
-    "expo-camera": "~12.2.0"
+    "expo-camera": "~12.2.0",
+    "react-native-reanimated": "~2.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
