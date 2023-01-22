@@ -32,7 +32,6 @@ export default function PostsScreen({ route, navigation }) {
 
       const allPosts = querySnapshot.docs
         .map((doc) => {
-          console.log(doc);
           return {
             ...doc.data(),
             id: doc.id,

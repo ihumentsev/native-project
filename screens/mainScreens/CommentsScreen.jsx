@@ -91,7 +91,7 @@ export default function CommentsScreen({ navigation, route }) {
                 <View style={styles.commentAvatar}>
                   <Image
                     style={{ width: 28, height: 28, borderRadius: 50 }}
-                    source={{ uri: item.photoUrl }}
+                    source={{ uri: item.imageAvatar }}
                   />
                 </View>
                 <View style={styles.commentBody}>
