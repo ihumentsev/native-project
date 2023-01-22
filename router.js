@@ -1,74 +1,55 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import RegisrationeScreen from "./Screens/auth/RegistrationScreen";
-import LoginScreen from "./Screens/auth/LoginScreen";
-import PostScreen from "./Screens/main/PostSScreen";
-import CreateScreen from "./Screens/main/CreateScreen";
-import ProfileScreen from "./Screens/main/ProfileScreen";
+import Home from "./screens/mainScreens/Home";
+import RegistrationScreen from "./screens/authScreens/RegistrationScreen";
+import LoginScreen from "./screens/authScreens/LoginScreen.jsx";
+import CreatePostsScreen from "./screens/mainScreens/CreatePostsScreen.jsx";
+import ProfileScreen from "./screens/mainScreens/ProfileScreen.jsx";
 import { Image } from "react-native";
+import CommentsScreen from "./screens/mainScreens/CommentsScreen";
+import PostsScreen from "./screens/mainScreens/ProfileScreen.jsx";
+import MapScreen from "./screens/mainScreens/MapScreen";
 
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+const MainStack = createBottomTabNavigator();
+
+const images = {
+  ProfileIcon: require("./assets/images/user.png"),
+  PostsIcon: require("./assets/images/postIcon.png"),
+  createPostIcon: require("./assets/images/new.png"),
+};
 
 export default function useRoute(isAuth) {
   if (!isAuth) {
     return (
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="Register" component={RegisrationeScreen} />
-        <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Navigator initialRouteName="Registration">
+        <Stack.Screen
+          name="Registration"
+          component={RegistrationScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     );
   }
   return (
-    <Tab.Navigator
-      screenOptions={{
-        tabBarShowLabel: false,
-        tabBarStyle: [
-          {
-            display: "flex",
-            height: 83,
-            paddingTop: 9,
-            paddingHorizontal: 40,
-          },
-          null,
-        ],
-      }}
-    >
-      <Tab.Screen
-        options={{
-          headerShown: false,
-          tabBarIcon: () => (
-            <Image source={require("./assets/image/grid.png")} />
-          ),
-        }}
-        name="Post"
-        component={PostScreen}
+    <Stack.Navigator initialRouteName="Home">
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="Home"
+        component={Home}
       />
-      <Tab.Screen
-        options={{
-          headerShown: false,
-          tabBarIcon: () => (
-            <Image source={require("./assets/image/new.png")} />
-          ),
-        }}
-        name="Create"
-        component={CreateScreen}
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="Comments"
+        component={CommentsScreen}
       />
-      <Tab.Screen
-        options={{
-          headerShown: false,
-          tabBarIcon: () => (
-            <Image source={require("./assets/image/user.png")} />
-          ),
-        }}
-        name="Profile"
-        component={ProfileScreen}
-      />
-    </Tab.Navigator>
+      <Stack.Screen name="Map" component={MapScreen} />
+    </Stack.Navigator>
   );
 }
